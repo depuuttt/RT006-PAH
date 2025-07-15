@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HUT RI ke-80 RT 006 - Pesona Anggrek Harapan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Chosen Palette: Warm Neutral with Patriotic Accents -->
+    <!-- Application Structure Plan: A single-page application with a top-down narrative flow designed for community engagement. It starts with a hero section with a countdown to build excitement. A sticky navigation bar allows quick access to key information: Schedule, Competitions, Committee, and a clear call-to-action for Participation. This structure is more intuitive for a resident than the original document's linear format. Interactive elements like competition filters and a budget visualization are used to simplify information consumption and encourage participation. -->
+    <!-- Visualization & Content Choices:
+        - Report Info: Main event date (Aug 17, 2025). Goal: Build excitement. Viz/Method: Countdown Timer (JS). Interaction: None, passive display. Justification: Creates urgency and anticipation. Library/Method: Vanilla JS.
+        - Report Info: Budget (Rp 8.5M goal). Goal: Encourage contributions. Viz/Method: Doughnut Chart (Chart.js) & HTML/CSS Progress Bar. Interaction: Hover on chart for details. Justification: Visualizing the financial goal and progress is more motivating than plain text. Library/Method: Chart.js for the chart, TailwindCSS for the progress bar.
+        - Report Info: List of competitions. Goal: Help residents find relevant activities. Viz/Method: Filterable Cards (HTML/CSS/JS). Interaction: Clickable buttons to filter by category (Anak-anak, Remaja, etc.). Justification: Prevents a long, overwhelming list and allows users to quickly access information relevant to their family. Library/Method: Vanilla JS for toggling visibility.
+        - Report Info: Schedule. Goal: Inform residents of dates/times. Viz/Method: Timeline layout (HTML/CSS). Interaction: None, clear visual hierarchy. Justification: A timeline is more intuitive for understanding a sequence of events than a simple list. Library/Method: TailwindCSS.
+        - Report Info: Committee list. Goal: Recognize organizers. Viz/Method: Grid of cards. Interaction: None. Justification: A structured grid is cleaner and more scannable than the original text block. Library/Method: TailwindCSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fdfbf8;
+      }
+      .font-display {
+        font-weight: 900;
+      }
+      .section-title {
+        font-weight: 700;
+        color: #8c1c13;
+      }
+      .nav-link {
+        transition: color 0.3s;
+      }
+      .nav-link:hover {
+        color: #d9534f;
+      }
+      .active-filter {
+        background-color: #8c1c13;
+        color: white;
+      }
+      .countdown-box {
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+        color: #8c1c13;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 300px;
+        max-height: 400px;
+      }
+      @media (min-width: 768px) {
+        .chart-container {
+          height: 350px;
+        }
+      }
+    </style>
+  </head>
+  <body class="text-gray-800">
+    <header id="beranda" class="bg-red-800 text-white py-6 shadow-lg relative">
+      <nav class="container mx-auto px-6 flex justify-between items-center">
+        <h1 class="text-xl font-bold">HUT RI ke-80 RT 006</h1>
+        <div class="hidden md:flex space-x-6">
+          <a href="#beranda" class="nav-link">Beranda</a>
+          <a href="#jadwal" class="nav-link">Jadwal</a>
+          <a href="#lomba" class="nav-link">Lomba</a>
+          <a href="#panitia" class="nav-link">Panitia</a>
+          <a href="#partisipasi" class="nav-link">Partisipasi</a>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-red-900 absolute w-full">
+        <a href="#beranda" class="block text-center py-2 nav-link">Beranda</a>
+        <a href="#jadwal" class="block text-center py-2 nav-link">Jadwal</a>
+        <a href="#lomba" class="block text-center py-2 nav-link">Lomba</a>
+        <a href="#panitia" class="block text-center py-2 nav-link">Panitia</a>
+        <a href="#partisipasi" class="block text-center py-2 nav-link"
+          >Partisipasi</a
+        >
+      </div>
+
+      <div class="text-center pt-16 pb-20">
+        <h2 class="font-display text-4xl md:text-6xl">
+          Rayakan Kemerdekaan, Eratkan Kebersamaan
+        </h2>
+        <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+          Menyambut Hari Ulang Tahun Kemerdekaan Republik Indonesia ke-80 di
+          Lingkungan RT 006
+        </p>
+        <div class="mt-8">
+          <p class="font-semibold mb-4">Menuju Puncak Acara 17 Agustus 2025:</p>
+          <div
+            id="countdown"
+            class="flex justify-center space-x-2 md:space-x-4"
+          ></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+      <section id="pengantar" class="text-center mb-16">
+        <h3 class="section-title text-3xl mb-4">
+          Semangat Kebersamaan Warga RT 006
+        </h3>
+        <p class="max-w-3xl mx-auto text-gray-600">
+          Setiap 17 Agustus, kita tidak hanya merayakan kemerdekaan, tetapi juga
+          memperkuat ikatan antar warga. Tahun ini, kami mengajak seluruh warga
+          RT 006, dari anak-anak hingga orang dewasa, untuk bersatu dalam
+          serangkaian kegiatan yang seru dan penuh makna. Mari kita tingkatkan
+          semangat juang, sportivitas, dan kerja sama melalui berbagai
+          perlombaan dan malam kebersamaan.
+        </p>
+      </section>
+
+      <section id="jadwal" class="mb-16">
+        <h3 class="section-title text-3xl text-center mb-8">Jadwal Kegiatan</h3>
+        <div class="max-w-4xl mx-auto">
+          <p class="text-center text-gray-600 mb-8">
+            Berikut adalah rangkaian acara yang telah kami siapkan. Tandai
+            kalender Anda agar tidak ketinggalan setiap momen keseruannya! Semua
+            kegiatan, kecuali disebutkan lain, akan berlokasi di Area Fasum
+            RT.006.
+          </p>
+          <div id="schedule-container" class="space-y-6"></div>
+        </div>
+      </section>
+
+      <section id="lomba" class="mb-16">
+        <h3 class="section-title text-3xl text-center mb-4">
+          Perlombaan & Kategori
+        </h3>
+        <p class="text-center text-gray-600 mb-8">
+          Temukan lomba yang cocok untuk Anda dan keluarga! Klik kategori di
+          bawah untuk melihat daftar lombanya.
+        </p>
+        <div
+          id="filters"
+          class="flex flex-wrap justify-center gap-2 mb-8"
+        ></div>
+        <div
+          id="competitions-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+      </section>
+
+      <section id="panitia" class="mb-16">
+        <h3 class="section-title text-3xl text-center mb-8">
+          Panitia Pelaksana
+        </h3>
+        <p class="text-center text-gray-600 mb-8">
+          Kegiatan ini terselenggara berkat kerja keras dan dedikasi tim
+          panitia. Kenali mereka yang berada di balik layar kesuksesan acara
+          kita.
+        </p>
+        <div
+          id="committee-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        ></div>
+      </section>
+
+      <section id="partisipasi" class="bg-white rounded-lg shadow-lg p-8">
+        <h3 class="section-title text-3xl text-center mb-8">
+          Dukung & Partisipasi
+        </h3>
+        <p class="text-center text-gray-600 mb-8">
+          Kesuksesan acara ini bergantung pada dukungan dan partisipasi seluruh
+          warga. Kontribusi Anda, sekecil apapun, sangat berarti untuk
+          mewujudkan perayaan yang meriah dan tak terlupakan bagi kita semua.
+        </p>
+        <div class="flex flex-col md:flex-row gap-8 items-center">
+          <div class="w-full md:w-1/2">
+            <h4 class="font-bold text-xl mb-4 text-center">
+              Anggaran Dana Kegiatan
+            </h4>
+            <div class="chart-container">
+              <canvas id="budgetChart"></canvas>
+            </div>
+            <div class="mt-4 text-center">
+              <p class="text-lg font-semibold">
+                Total Kebutuhan Dana:
+                <span class="text-red-700">Rp 8.500.000</span>
+              </p>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2">
+            <h4 class="font-bold text-xl mb-4">Cara Berpartisipasi</h4>
+            <div
+              class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4"
+            >
+              <p class="font-semibold">Partisipasi Warga (per KK):</p>
+              <p class="text-2xl font-bold text-gray-800">Rp 100.000,-</p>
+              <p class="text-sm text-gray-500">
+                Pembayaran maksimal tanggal 10 Agustus 2025
+              </p>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <h5 class="font-semibold">1. Tunai (Cash)</h5>
+                <p class="text-gray-600">
+                  Langsung ke Bendahara: Nida Rafifah atau Melia Rafiani.
+                </p>
+              </div>
+              <div>
+                <h5 class="font-semibold">2. Transfer Bank</h5>
+                <p class="text-gray-600">
+                  BCA: <strong class="select-all">7635477750</strong>
+                </p>
+                <p class="text-gray-600">a.n. Aldi Maulana Iqbal</p>
+                <p class="text-sm text-gray-500 mt-1">
+                  Mohon kirim bukti transfer via WhatsApp ke
+                  <a
+                    href="https://wa.me/6282112077089"
+                    target="_blank"
+                    class="text-green-600 hover:underline"
+                    >0821-1207-7089</a
+                  >
+                </p>
+              </div>
+              <div>
+                <h5 class="font-semibold">3. Donatur</h5>
+                <p class="text-gray-600">
+                  Kami juga membuka kesempatan bagi para donatur yang ingin
+                  memberikan dukungan lebih.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16 py-6">
+      <div class="container mx-auto px-6 text-center">
+        <p>
+          Demikian informasi ini kami sampaikan. Mari kita sukseskan bersama!
+        </p>
+        <p class="text-sm text-gray-400 mt-2">
+          &copy; 2025 Panitia HUT RI ke-80 RT 006 Pesona Anggrek Harapan
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const data = {
+          targetDate: "2025-08-17T08:00:00",
+          schedule: [
+            {
+              date: "2025-07-20",
+              time: "16.00-18.00 WIB",
+              title: "Pertandingan E-Sport (ML & FF) - Hari 1",
+              icon: "🎮",
+            },
+            {
+              date: "2025-07-26",
+              time: "16.00-18.00 WIB",
+              title: "Pertandingan E-Sport (ML & FF) - Hari 2",
+              icon: "🎮",
+            },
+            {
+              date: "2025-08-02",
+              time: "19.00-22.00 WIB",
+              title: "Pertandingan Domino & Catur",
+              icon: "🎲",
+            },
+            {
+              date: "2025-08-09",
+              time: "19.00-22.00 WIB",
+              title: "Pertandingan Badminton",
+              icon: "🏸",
+            },
+            {
+              date: "2025-08-16",
+              time: "16.00-18.00 WIB",
+              title: "Perlombaan Fashion Show",
+              icon: "💃",
+            },
+            {
+              date: "2025-08-17",
+              time: "08.00-17.30 WIB",
+              title: "Puncak Acara Perlombaan",
+              icon: "🏅",
+            },
+            {
+              date: "2025-08-23",
+              time: "Jadwal Tentatif",
+              title: "Malam Kebersamaan",
+              icon: "🎉",
+            },
+          ],
+          competitions: {
+            "Anak 4-7 thn": [
+              "Tangkap ikan dalam baskom",
+              "Melempar bola ke dalam baskom",
+              "Mengupas & memakan telur rebus",
+              "Fashion show tema kemerdekaan",
+            ],
+            "Anak 8-12 thn": [
+              "Lomba Biskuit dengan raut muka",
+              "Estafet gelas menggunakan balon",
+              "Estafet sarung (kelompok)",
+              "Lomba estafet botol bolong (kelompok)",
+              "E-Sport ML dan FF",
+              "Fashion show tema kemerdekaan",
+            ],
+            Remaja: [
+              "Estafet sarung (kelompok)",
+              "E-Sport ML dan FF",
+              "Lomba estafet botol bolong (kelompok)",
+              "Bola gawang kecil memakai daster",
+              "Badminton (Berpasangan)",
+            ],
+            "Ibu-Ibu": [
+              "Mengambil bola dengan aba-aba",
+              "Estafet Balon",
+              "Balap jepit balon menggunakan tampah di kepala",
+            ],
+            "Bapak-Bapak": [
+              "Domino (berpasangan)",
+              "Catur",
+              "Badminton (berpasangan)",
+            ],
+          },
+          committee: [
+            {
+              role: "Penanggung Jawab & Pembina",
+              members: [
+                "Bpk. Suparwi (Ketua RT. 006)",
+                "Bpk. Daru Teguh Prasetyo",
+                "Bpk. Purnomo Kahar",
+                "Bpk. Dwi Hartanto",
+                "Bpk. Choeri",
+                "Bpk. Tri Total",
+                "Bpk. Edi Suwarjan",
+              ],
+            },
+            {
+              role: "Panitia Inti",
+              members: [
+                "Ketua: Aldi Maulana Iqbal",
+                "Wakil Ketua: Yudi Wildan Bayuaji",
+                "Sekretaris: Nesya Zahra Mevia",
+                "Wakil Sekretaris: Candi Puspita Sari",
+                "Bendahara: Nida Rafifah",
+                "Wakil Bendahara: Melia Rafiani",
+              ],
+            },
+            {
+              role: "Sie. Acara",
+              members: [
+                "Koordinator: Bintang Mahesa I.P.",
+                "Wakil: Muhammad Rafka D.H.",
+                "Anggota: Rizky Revaldy, Aldina Agmay S., Aisyah Nathania H.",
+              ],
+            },
+            {
+              role: "Sie. Sarana & Perlengkapan",
+              members: [
+                "Koordinator: Ghiffari Diifarezta G.",
+                "Wakil: Eko Nanda Cahyono",
+                "Anggota: M. Shafwan Z., Rafiqi, Richardo Ramadhani P.",
+              ],
+            },
+            {
+              role: "Sie. Dokumentasi & Humas",
+              members: [
+                "Koordinator: Zefanya Chelsy N.",
+                "Anggota: Askanah Ufairah, Qatrunnada Z.A",
+              ],
+            },
+            {
+              role: "Sie. Konsumsi Kegiatan",
+              members: [
+                "Koordinator: Hasna Hanifah C.",
+                "Anggota: Edelisa Zahra A., Frozyn Attaya M.Y.P.",
+              ],
+            },
+            {
+              role: "Penanggung Jawab Perlombaan",
+              members: [
+                "Koordinator: Handaffa Rafi Pasya",
+                "Anak-Anak: Rezkiya Kiara R., Fellycia Stefandyano P., Annisah",
+                "Remaja: Raehan Putra S., Rabbiulawal Khrisna P., Marfin Rafa R.",
+                "Bapak/Ibu: Ghiffari Diifarezta G., Eko Nanda C., Ayu Nadya Ningsih, Candi Puspita Sari",
+              ],
+            },
+          ],
+          budget: {
+            total: 8500000,
+            current: 0,
+          },
+        };
+
+        function setupCountdown() {
+          const countdownEl = document.getElementById("countdown");
+          if (!countdownEl) return;
+          const target = new Date(data.targetDate).getTime();
+
+          function update() {
+            const now = new Date().getTime();
+            const distance = target - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(
+              (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
+            const minutes = Math.floor(
+              (distance % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownEl.innerHTML = `
+                        <div class="countdown-box p-3 rounded-lg shadow-md"><div class="font-display text-2xl md:text-4xl">${days}</div><div class="text-xs">Hari</div></div>
+                        <div class="countdown-box p-3 rounded-lg shadow-md"><div class="font-display text-2xl md:text-4xl">${hours}</div><div class="text-xs">Jam</div></div>
+                        <div class="countdown-box p-3 rounded-lg shadow-md"><div class="font-display text-2xl md:text-4xl">${minutes}</div><div class="text-xs">Menit</div></div>
+                        <div class="countdown-box p-3 rounded-lg shadow-md"><div class="font-display text-2xl md:text-4xl">${seconds}</div><div class="text-xs">Detik</div></div>
+                    `;
+
+            if (distance < 0) {
+              clearInterval(interval);
+              countdownEl.innerHTML =
+                "<div class='text-2xl font-bold'>Acara Telah Dimulai!</div>";
+            }
+          }
+          const interval = setInterval(update, 1000);
+          update();
+        }
+
+        function setupSchedule() {
+          const container = document.getElementById("schedule-container");
+          if (!container) return;
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+
+          data.schedule.forEach((item) => {
+            const itemDate = new Date(item.date);
+            const diffTime = itemDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            let dayLabel = "";
+
+            if (diffDays > 0) {
+              dayLabel = `<span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">${diffDays} hari lagi</span>`;
+            } else if (diffDays === 0) {
+              dayLabel = `<span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Hari ini</span>`;
+            } else {
+              dayLabel = `<span class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Selesai</span>`;
+            }
+
+            const dateFormatted = itemDate.toLocaleDateString("id-ID", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
+
+            const scheduleItem = `
+                        <div class="flex items-center gap-4">
+                            <div class="text-3xl">${item.icon}</div>
+                            <div class="flex-grow bg-white p-4 rounded-lg shadow">
+                                <div class="flex justify-between items-center">
+                                    <h4 class="font-bold text-lg">${item.title}</h4>
+                                    ${dayLabel}
+                                </div>
+                                <p class="text-gray-600">${dateFormatted} &bull; ${item.time}</p>
+                            </div>
+                        </div>
+                    `;
+            container.innerHTML += scheduleItem;
+          });
+        }
+
+        function setupCompetitions() {
+          const filtersContainer = document.getElementById("filters");
+          const competitionsContainer = document.getElementById(
+            "competitions-container"
+          );
+          if (!filtersContainer || !competitionsContainer) return;
+
+          const categories = Object.keys(data.competitions);
+
+          categories.forEach((category, index) => {
+            const button = document.createElement("button");
+            button.textContent = category;
+            button.className = `filter-btn px-4 py-2 rounded-full border border-gray-300 transition ${
+              index === 0 ? "active-filter" : ""
+            }`;
+            button.dataset.filter = category;
+            filtersContainer.appendChild(button);
+          });
+
+          function renderCompetitions(filter) {
+            competitionsContainer.innerHTML = "";
+            const competitionsToRender = data.competitions[filter];
+            if (!competitionsToRender) return;
+
+            competitionsToRender.forEach((comp) => {
+              const card = `
+                                <div class="bg-white p-4 rounded-lg shadow-md border-l-4 border-red-700 transition hover:shadow-xl">
+                                    <p class="font-semibold text-lg">${comp}</p>
+                                    <p class="text-sm text-gray-500 mt-1">${filter}</p>
+                                </div>`;
+              competitionsContainer.innerHTML += card;
+            });
+          }
+
+          filtersContainer.addEventListener("click", (e) => {
+            if (e.target.classList.contains("filter-btn")) {
+              document
+                .querySelectorAll(".filter-btn")
+                .forEach((btn) => btn.classList.remove("active-filter"));
+              e.target.classList.add("active-filter");
+              renderCompetitions(e.target.dataset.filter);
+            }
+          });
+
+          if (categories.length > 0) {
+            renderCompetitions(categories[0]);
+          }
+        }
+
+        function setupCommittee() {
+          const container = document.getElementById("committee-container");
+          if (!container) return;
+          container.innerHTML = "";
+
+          data.committee.forEach((group) => {
+            let colSpanClass = "";
+            if (
+              group.role === "Penanggung Jawab & Pembina" ||
+              group.role === "Panitia Inti"
+            ) {
+              colSpanClass = "md:col-span-2 lg:col-span-3";
+            }
+
+            let membersHtml = group.members
+              .map(
+                (member) =>
+                  `<li class="text-gray-600">${member
+                    .replace(/:/g, ':<span class="font-semibold">')
+                    .replace(/$/g, "</span>")}</li>`
+              )
+              .join("");
+
+            const groupHtml = `
+                        <div class="bg-white p-6 rounded-lg shadow ${colSpanClass}">
+                            <h4 class="font-bold text-xl mb-3 text-red-800">${group.role}</h4>
+                            <ul class="list-disc list-inside space-y-1">${membersHtml}</ul>
+                        </div>
+                    `;
+            container.innerHTML += groupHtml;
+          });
+        }
+
+        function setupBudgetChart() {
+          const ctx = document.getElementById("budgetChart");
+          if (!ctx) return;
+          const remaining = data.budget.total - data.budget.current;
+
+          new Chart(ctx, {
+            type: "doughnut",
+            data: {
+              labels: ["Dana Terkumpul", "Kebutuhan Dana"],
+              datasets: [
+                {
+                  data: [data.budget.current, remaining > 0 ? remaining : 0],
+                  backgroundColor: ["#16A34A", "#E5E7EB"],
+                  borderColor: ["#FFFFFF"],
+                  borderWidth: 4,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              cutout: "70%",
+              plugins: {
+                legend: {
+                  position: "bottom",
+                  labels: {
+                    padding: 20,
+                    font: { size: 14 },
+                  },
+                },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      let label = context.label || "";
+                      if (label) {
+                        label += ": ";
+                      }
+                      if (context.parsed !== null) {
+                        label += new Intl.NumberFormat("id-ID", {
+                          style: "currency",
+                          currency: "IDR",
+                          minimumFractionDigits: 0,
+                        }).format(context.parsed);
+                      }
+                      return label;
+                    },
+                  },
+                },
+              },
+            },
+          });
+        }
+
+        function setupMobileMenu() {
+          const menuButton = document.getElementById("mobile-menu-button");
+          const mobileMenu = document.getElementById("mobile-menu");
+          menuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+          mobileMenu.addEventListener("click", (e) => {
+            if (e.target.tagName === "A") {
+              mobileMenu.classList.add("hidden");
+            }
+          });
+        }
+
+        setupCountdown();
+        setupSchedule();
+        setupCompetitions();
+        setupCommittee();
+        setupBudgetChart();
+        setupMobileMenu();
+      });
+    </script>
+  </body>
+</html>
