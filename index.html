@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portal Informasi Warga RT 006 - Pesona Anggrek Harapan</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/8460c0c2c8.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -30,10 +34,6 @@
         background-size: 20px 20px;
         background-repeat: repeat;
       }
-      .card-icon {
-        background-color: #8c1c13;
-        color: white;
-      }
       .agenda-card {
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       }
@@ -42,6 +42,19 @@
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
           0 4px 6px -2px rgba(0, 0, 0, 0.05);
         cursor: pointer;
+      }
+      .whatsapp-btn {
+        background-image: linear-gradient(to right, #d9534f, #8c1c13);
+        transition: transform 0.2s ease-in-out;
+      }
+      .whatsapp-btn:hover {
+        transform: scale(1.05);
+      }
+      .social-icon {
+        transition: transform 0.2s ease-in-out;
+      }
+      .social-icon:hover {
+        transform: scale(1.2);
       }
     </style>
   </head>
@@ -52,13 +65,13 @@
       >
         <a href="#" class="text-2xl font-bold text-red-800">RT 006</a>
         <div class="hidden md:flex space-x-8">
-          <a href="#pengumuman" class="text-gray-600 hover:text-red-700"
-            >Pengumuman</a
-          >
-          <a href="#informasi" class="text-gray-600 hover:text-red-700"
-            >Informasi</a
+          <a href="#pengurus" class="text-gray-600 hover:text-red-700"
+            >Pengurus RT</a
           >
           <a href="#agenda" class="text-gray-600 hover:text-red-700">Agenda</a>
+          <a href="#lokasi" class="text-gray-600 hover:text-red-700"
+            >Lokasi & Kontak</a
+          >
         </div>
         <button id="mobile-menu-button-lp" class="md:hidden focus:outline-none">
           <svg
@@ -79,19 +92,19 @@
       </nav>
       <div id="mobile-menu-lp" class="hidden md:hidden bg-white border-t">
         <a
-          href="#pengumuman"
+          href="#pengurus"
           class="block text-center py-3 text-gray-600 hover:bg-gray-100"
-          >Pengumuman</a
-        >
-        <a
-          href="#informasi"
-          class="block text-center py-3 text-gray-600 hover:bg-gray-100"
-          >Informasi</a
+          >Pengurus RT</a
         >
         <a
           href="#agenda"
           class="block text-center py-3 text-gray-600 hover:bg-gray-100"
           >Agenda</a
+        >
+        <a
+          href="#lokasi"
+          class="block text-center py-3 text-gray-600 hover:bg-gray-100"
+          >Lokasi & Kontak</a
         >
       </div>
     </header>
@@ -109,110 +122,75 @@
     </section>
 
     <main class="container mx-auto px-6 py-12">
-      <section id="pengumuman" class="mb-16">
+      <section id="pengurus" class="mb-16">
         <h2 class="text-3xl font-bold text-center text-red-800 mb-8">
-          Pengumuman Terkini
+          Struktur Pengurus RT
         </h2>
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div class="p-8">
-            <p class="text-sm text-gray-500 mb-2">ACARA TERDEKAT</p>
-            <h3 class="text-2xl font-bold mb-4">
-              Perayaan HUT Kemerdekaan RI ke-80
-            </h3>
-            <p class="text-gray-600 mb-6">
-              Mari bergabung dan meriahkan rangkaian acara peringatan HUT RI
-              ke-80 di lingkungan kita! Akan ada berbagai perlombaan seru untuk
-              semua usia, mulai dari anak-anak hingga dewasa, serta malam
-              kebersamaan yang penuh kehangatan.
-            </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Card Ketua RT -->
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 text-center flex flex-col"
+          >
+            <img
+              src="./assets/ketua.png"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x400/E2E8F0/4A5568?text=Foto'"
+              alt="Foto Ketua RT"
+              class="w-32 h-32 rounded-full mx-auto border-4 border-gray-200 shadow-md object-cover"
+            />
+            <h3 class="text-2xl font-bold mt-4">Suparwi</h3>
+            <p class="text-gray-500 mb-4">Ketua RT</p>
             <a
-              href="#"
-              onclick="alert('Ini akan membuka halaman detail acara HUT RI. Untuk saat ini, fungsi ini belum aktif.');"
-              class="inline-block bg-red-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-red-800 transition"
+              href="https://wa.me/6282125707075"
+              target="_blank"
+              class="whatsapp-btn text-white font-bold py-2 px-4 rounded-lg mt-auto flex items-center justify-center space-x-2"
             >
-              Lihat Detail Acara & Lomba
+              <i class="fa-brands fa-whatsapp text-xl"></i>
+              <span>WhatsApp</span>
             </a>
           </div>
-        </div>
-      </section>
 
-      <section id="informasi" class="mb-16">
-        <h2 class="text-3xl font-bold text-center text-red-800 mb-8">
-          Informasi Penting
-        </h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white p-6 rounded-lg shadow-md text-center">
-            <div
-              class="card-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+          <!-- Card Sekretaris RT -->
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 text-center flex flex-col"
+          >
+            <img
+              src="./assets/sekretaris.png"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x400/E2E8F0/4A5568?text=Foto'"
+              alt="Foto Sekretaris RT"
+              class="w-32 h-32 rounded-full mx-auto border-4 border-gray-200 shadow-md object-cover"
+            />
+            <h3 class="text-2xl font-bold mt-4">Bagus</h3>
+            <p class="text-gray-500 mb-4">Sekretaris RT</p>
+            <a
+              href="https://wa.me/6282117447544"
+              target="_blank"
+              class="whatsapp-btn text-white font-bold py-2 px-4 rounded-lg mt-auto flex items-center justify-center space-x-2"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Ketua RT 006</h3>
-            <p class="text-gray-700">Bpk. Suparwi</p>
-            <p class="text-gray-500 text-sm mt-1">
-              Hubungi untuk keperluan administrasi dan laporan warga.
-            </p>
+              <i class="fa-brands fa-whatsapp text-xl"></i>
+              <span>WhatsApp</span>
+            </a>
           </div>
-          <div class="bg-white p-6 rounded-lg shadow-md text-center">
-            <div
-              class="card-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+
+          <!-- Card Bendahara RT -->
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 text-center flex flex-col"
+          >
+            <img
+              src="./assets/bendahara.png"
+              onerror="this.onerror=null;this.src='https://placehold.co/400x400/E2E8F0/4A5568?text=Foto'"
+              alt="Foto Bendahara RT"
+              class="w-32 h-32 rounded-full mx-auto border-4 border-gray-200 shadow-md object-cover"
+            />
+            <h3 class="text-2xl font-bold mt-4">Dwi</h3>
+            <p class="text-gray-500 mb-4">Bendahara RT</p>
+            <a
+              href="https://wa.me/6281311339861"
+              target="_blank"
+              class="whatsapp-btn text-white font-bold py-2 px-4 rounded-lg mt-auto flex items-center justify-center space-x-2"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                <path
-                  fill-rule="evenodd"
-                  d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.022 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Keamanan Lingkungan</h3>
-            <p class="text-gray-700">Aktif 24 Jam</p>
-            <p class="text-gray-500 text-sm mt-1">
-              Segera laporkan hal mencurigakan ke pos keamanan terdekat.
-            </p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-md text-center">
-            <div
-              class="card-icon w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  d="M8.433 7.418c.158-.103.346-.195.574-.277a6.991 6.991 0 015.993 0c.228.082.416.174.574.277a1 1 0 01.582.91v5.438a1 1 0 01-.582.91c-.158.103-.346.195-.574.277a6.991 6.991 0 01-5.993 0c-.228-.082-.416-.174-.574-.277a1 1 0 01-.582-.91V8.328a1 1 0 01.582-.91z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm0 2a10 10 0 100-20 10 10 0 000 20z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Iuran Warga</h3>
-            <p class="text-gray-700">Jatuh Tempo Awal Bulan</p>
-            <p class="text-gray-500 text-sm mt-1">
-              Pembayaran dapat dilakukan melalui bendahara RT.
-            </p>
+              <i class="fa-brands fa-whatsapp text-xl"></i>
+              <span>WhatsApp</span>
+            </a>
           </div>
         </div>
       </section>
@@ -226,6 +204,63 @@
           class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
         >
           <!-- Agenda cards will be injected here by JS -->
+        </div>
+      </section>
+
+      <section id="lokasi" class="mb-16">
+        <h2 class="text-3xl font-bold text-center text-red-800 mb-8">
+          Lokasi & Kontak Kami
+        </h2>
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="h-64 md:h-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3966.419869257804!2d106.99422807380265!3d-6.208219993779592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTInMjkuNiJTIDEwNsKwNTknNDguNSJF!5e0!3m2!1sen!2sid!4v1752585598399!5m2!1sen!2sid"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div class="p-8 flex flex-col justify-center">
+              <div>
+                <h3 class="text-xl font-bold mb-2">Alamat</h3>
+                <p class="text-gray-600 mb-6">
+                  Perumahan Pesona Anggrek Harapan, Kel. Harapan Jaya, Kec.
+                  Bekasi Utara, Kota Bekasi
+                </p>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">Narahubung</h3>
+                <p class="text-gray-600 mb-6">
+                  Untuk informasi lebih lanjut, silakan hubungi pengurus RT.
+                </p>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">Media Sosial</h3>
+                <div class="flex space-x-4">
+                  <a
+                    href="#"
+                    class="text-gray-500 hover:text-red-700 social-icon"
+                    ><i class="fa-brands fa-tiktok text-2xl"></i
+                  ></a>
+                  <a
+                    href="#"
+                    class="text-gray-500 hover:text-red-700 social-icon"
+                    ><i class="fa-brands fa-instagram text-2xl"></i
+                  ></a>
+                  <a
+                    href="https://depuuttt.github.io/RT006-PAH/"
+                    target="_blank"
+                    class="text-gray-500 hover:text-red-700 social-icon"
+                    ><i class="fa-solid fa-globe text-2xl"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -244,7 +279,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         const agendaData = [
           {
-            title: "Puncak Acara Perlombaan HUT RI",
+            title: "Acara Perlombaan HUT RI",
             url: "17an.html",
             status: "confirmed",
           },
@@ -289,17 +324,9 @@
 
           agendaContainer.addEventListener("click", function (e) {
             const card = e.target.closest(".agenda-card");
-            if (card) {
+            if (card && card.dataset.status === "tba") {
               e.preventDefault();
-              if (card.dataset.status === "tba") {
-                alert("Detail untuk acara ini akan segera hadir.");
-              } else {
-                alert(
-                  `Navigasi ke halaman detail untuk: ${
-                    card.querySelector("h4").innerText
-                  }`
-                );
-              }
+              alert("Detail untuk acara ini akan segera hadir.");
             }
           });
         }

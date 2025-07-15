@@ -6,22 +6,16 @@
     <title>HUT RI ke-80 RT 006 - Pesona Anggrek Harapan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      src="https://kit.fontawesome.com/8460c0c2c8.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    <!-- Chosen Palette: Warm Neutral with Patriotic Accents -->
-    <!-- Application Structure Plan: A single-page application with a top-down narrative flow designed for community engagement. It starts with a hero section with a countdown to build excitement. A sticky navigation bar allows quick access to key information: Schedule, Competitions, Committee, and a clear call-to-action for Participation. This structure is more intuitive for a resident than the original document's linear format. Interactive elements like competition filters and a budget visualization are used to simplify information consumption and encourage participation. -->
-    <!-- Visualization & Content Choices:
-        - Report Info: Main event date (Aug 17, 2025). Goal: Build excitement. Viz/Method: Countdown Timer (JS). Interaction: None, passive display. Justification: Creates urgency and anticipation. Library/Method: Vanilla JS.
-        - Report Info: Budget (Rp 8.5M goal). Goal: Encourage contributions. Viz/Method: Doughnut Chart (Chart.js) & HTML/CSS Progress Bar. Interaction: Hover on chart for details. Justification: Visualizing the financial goal and progress is more motivating than plain text. Library/Method: Chart.js for the chart, TailwindCSS for the progress bar.
-        - Report Info: List of competitions. Goal: Help residents find relevant activities. Viz/Method: Filterable Cards (HTML/CSS/JS). Interaction: Clickable buttons to filter by category (Anak-anak, Remaja, etc.). Justification: Prevents a long, overwhelming list and allows users to quickly access information relevant to their family. Library/Method: Vanilla JS for toggling visibility.
-        - Report Info: Schedule. Goal: Inform residents of dates/times. Viz/Method: Timeline layout (HTML/CSS). Interaction: None, clear visual hierarchy. Justification: A timeline is more intuitive for understanding a sequence of events than a simple list. Library/Method: TailwindCSS.
-        - Report Info: Committee list. Goal: Recognize organizers. Viz/Method: Grid of cards. Interaction: None. Justification: A structured grid is cleaner and more scannable than the original text block. Library/Method: TailwindCSS.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
       body {
         font-family: "Inter", sans-serif;
@@ -34,11 +28,19 @@
         font-weight: 700;
         color: #8c1c13;
       }
-      .nav-link {
-        transition: color 0.3s;
-      }
-      .nav-link:hover {
-        color: #d9534f;
+      .hero-bg {
+        background-color: #8c1c13;
+        background-image: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.08) 25%,
+            transparent 25%
+          ),
+          linear-gradient(225deg, rgba(0, 0, 0, 0.08) 25%, transparent 25%),
+          linear-gradient(45deg, rgba(0, 0, 0, 0.08) 25%, transparent 25%),
+          linear-gradient(315deg, rgba(0, 0, 0, 0.08) 25%, transparent 25%);
+        background-position: 10px 0, 10px 0, 0 0, 0 0;
+        background-size: 20px 20px;
+        background-repeat: repeat;
       }
       .active-filter {
         background-color: #8c1c13;
@@ -66,19 +68,29 @@
     </style>
   </head>
   <body class="text-gray-800">
-    <header id="beranda" class="bg-red-800 text-white py-6 shadow-lg relative">
-      <nav class="container mx-auto px-6 flex justify-between items-center">
-        <h1 class="text-xl font-bold">HUT RI ke-80 RT 006</h1>
-        <div class="hidden md:flex space-x-6">
-          <a href="#beranda" class="nav-link">Beranda</a>
-          <a href="#jadwal" class="nav-link">Jadwal</a>
-          <a href="#lomba" class="nav-link">Lomba</a>
-          <a href="#panitia" class="nav-link">Panitia</a>
-          <a href="#partisipasi" class="nav-link">Partisipasi</a>
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#beranda" class="text-2xl font-bold text-red-800"
+          >HUT RI ke-80</a
+        >
+        <div class="hidden md:flex space-x-8">
+          <a href="#beranda" class="text-gray-600 hover:text-red-700"
+            >Beranda</a
+          >
+          <a href="#jadwal" class="text-gray-600 hover:text-red-700">Jadwal</a>
+          <a href="#lomba" class="text-gray-600 hover:text-red-700">Lomba</a>
+          <a href="#panitia" class="text-gray-600 hover:text-red-700"
+            >Panitia</a
+          >
+          <a href="#partisipasi" class="text-gray-600 hover:text-red-700"
+            >Partisipasi</a
+          >
         </div>
         <button id="mobile-menu-button" class="md:hidden focus:outline-none">
           <svg
-            class="w-6 h-6"
+            class="w-6 h-6 text-gray-700"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -93,21 +105,41 @@
           </svg>
         </button>
       </nav>
-      <div id="mobile-menu" class="hidden md:hidden bg-red-900 absolute w-full">
-        <a href="#beranda" class="block text-center py-2 nav-link">Beranda</a>
-        <a href="#jadwal" class="block text-center py-2 nav-link">Jadwal</a>
-        <a href="#lomba" class="block text-center py-2 nav-link">Lomba</a>
-        <a href="#panitia" class="block text-center py-2 nav-link">Panitia</a>
-        <a href="#partisipasi" class="block text-center py-2 nav-link"
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <a
+          href="#beranda"
+          class="block text-center py-3 text-gray-600 hover:bg-gray-100"
+          >Beranda</a
+        >
+        <a
+          href="#jadwal"
+          class="block text-center py-3 text-gray-600 hover:bg-gray-100"
+          >Jadwal</a
+        >
+        <a
+          href="#lomba"
+          class="block text-center py-3 text-gray-600 hover:bg-gray-100"
+          >Lomba</a
+        >
+        <a
+          href="#panitia"
+          class="block text-center py-3 text-gray-600 hover:bg-gray-100"
+          >Panitia</a
+        >
+        <a
+          href="#partisipasi"
+          class="block text-center py-3 text-gray-600 hover:bg-gray-100"
           >Partisipasi</a
         >
       </div>
+    </header>
 
-      <div class="text-center pt-16 pb-20">
+    <section id="beranda" class="hero-bg text-white">
+      <div class="container mx-auto px-6 py-20 text-center">
         <h2 class="font-display text-4xl md:text-6xl">
           Rayakan Kemerdekaan, Eratkan Kebersamaan
         </h2>
-        <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+        <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-red-100">
           Menyambut Hari Ulang Tahun Kemerdekaan Republik Indonesia ke-80 di
           Lingkungan RT 006
         </p>
@@ -119,7 +151,7 @@
           ></div>
         </div>
       </div>
-    </header>
+    </section>
 
     <main class="container mx-auto px-6 py-12">
       <section id="pengantar" class="text-center mb-16">
@@ -272,44 +304,44 @@
             {
               date: "2025-07-20",
               time: "16.00-18.00 WIB",
-              title: "Pertandingan E-Sport (ML & FF) - Hari 1",
-              icon: "🎮",
+              title: "Pertandingan E-Sport (ML & FF)",
+              icon: '<i class="fa-solid fa-calendar-day text-3xl text-red-700"></i>',
             },
             {
               date: "2025-07-26",
               time: "16.00-18.00 WIB",
-              title: "Pertandingan E-Sport (ML & FF) - Hari 2",
-              icon: "🎮",
+              title: "Pertandingan E-Sport (ML & FF)",
+              icon: '<i class="fa-solid fa-calendar-day text-3xl text-red-700"></i>',
             },
             {
               date: "2025-08-02",
               time: "19.00-22.00 WIB",
               title: "Pertandingan Domino & Catur",
-              icon: "🎲",
+              icon: '<i class="fa-solid fa-calendar-day text-3xl text-red-700"></i>',
             },
             {
               date: "2025-08-09",
               time: "19.00-22.00 WIB",
               title: "Pertandingan Badminton",
-              icon: "🏸",
+              icon: '<i class="fa-solid fa-calendar-day text-3xl text-red-700"></i>',
             },
             {
               date: "2025-08-16",
               time: "16.00-18.00 WIB",
               title: "Perlombaan Fashion Show",
-              icon: "💃",
+              icon: '<i class="fa-solid fa-calendar-day text-3xl text-red-700"></i>',
             },
             {
               date: "2025-08-17",
               time: "08.00-17.30 WIB",
               title: "Puncak Acara Perlombaan",
-              icon: "🏅",
+              icon: '<i class="fa-solid fa-calendar-day text-3xl text-red-700"></i>',
             },
             {
               date: "2025-08-23",
               time: "Jadwal Tentatif",
               title: "Malam Kebersamaan",
-              icon: "🎉",
+              icon: '<i class="fa-solid fa-calendar-day text-3xl text-red-700"></i>',
             },
           ],
           competitions: {
@@ -478,7 +510,7 @@
 
             const scheduleItem = `
                         <div class="flex items-center gap-4">
-                            <div class="text-3xl">${item.icon}</div>
+                            <div class="w-10 text-center">${item.icon}</div>
                             <div class="flex-grow bg-white p-4 rounded-lg shadow">
                                 <div class="flex justify-between items-center">
                                     <h4 class="font-bold text-lg">${item.title}</h4>
@@ -630,14 +662,16 @@
         function setupMobileMenu() {
           const menuButton = document.getElementById("mobile-menu-button");
           const mobileMenu = document.getElementById("mobile-menu");
-          menuButton.addEventListener("click", () => {
-            mobileMenu.classList.toggle("hidden");
-          });
-          mobileMenu.addEventListener("click", (e) => {
-            if (e.target.tagName === "A") {
-              mobileMenu.classList.add("hidden");
-            }
-          });
+          if (menuButton && mobileMenu) {
+            menuButton.addEventListener("click", () => {
+              mobileMenu.classList.toggle("hidden");
+            });
+            mobileMenu.addEventListener("click", (e) => {
+              if (e.target.tagName === "A") {
+                mobileMenu.classList.add("hidden");
+              }
+            });
+          }
         }
 
         setupCountdown();
