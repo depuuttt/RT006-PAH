@@ -61,9 +61,11 @@
   <body class="text-gray-800">
     <header class="bg-white shadow-md sticky top-0 z-50">
       <nav
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
+        class="container mx-auto px-6 py-2 flex justify-between items-center"
       >
-        <a href="#" class="text-2xl font-bold text-red-800">RT 006</a>
+        <a href="#">
+          <img src="assets/logo.png" alt="Logo RT 006" class="h-12" />
+        </a>
         <div class="hidden md:flex space-x-8">
           <a href="#pengurus" class="text-gray-600 hover:text-red-700"
             >Pengurus RT</a
@@ -213,11 +215,13 @@
         </h2>
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
           <div class="grid grid-cols-1 md:grid-cols-2">
-            <div class="h-64 md:h-full">
+            <div
+              class="relative overflow-hidden h-64 md:h-auto"
+              style="padding-top: 56.25%"
+            >
               <iframe
+                class="absolute top-0 left-0 w-full h-full"
                 src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3966.419869257804!2d106.99422807380265!3d-6.208219993779592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTInMjkuNiJTIDEwNsKwNTknNDguNSJF!5e0!3m2!1sen!2sid!4v1752585598399!5m2!1sen!2sid"
-                width="600"
-                height="450"
                 style="border: 0"
                 allowfullscreen=""
                 loading="lazy"

@@ -4,6 +4,19 @@ Static Websites of RT.006 Pesona Anggrek Harapan
 
 ## Changelog
 
+### [v1.3.0] - 2025-07-15
+
+#### Changed
+
+- Mengganti judul teks "RT 006" dengan logo gambar di kedua halaman (index.html dan 17an.html) untuk menciptakan identitas visual yang seragam.
+- Warna tombol WhatsApp disesuaikan dengan gradien merah agar selaras dengan tema utama halaman portal.
+- Daftar "Agenda Terdekat" pada halaman portal disederhanakan untuk hanya menampilkan dua acara utama: "Acara Perlombaan HUT RI" dan "Malam Kebersamaan Warga".
+
+#### Fixed
+
+- Memperbaiki tautan pada logo di halaman HUT RI (17an.html) agar mengarah kembali ke halaman portal utama (index.html), meningkatkan alur navigasi pengguna.
+- Mengimplementasikan teknik "responsive wrapper" pada iframe Google Maps untuk mengatasi masalah overflow dan memastikan peta tampil proporsional di semua ukuran perangkat.
+
 ### [v1.2.0] - 2025-07-15
 
 #### Changed
