@@ -4,6 +4,15 @@ Static Websites of RT.006 Pesona Anggrek Harapan
 
 ## Changelog
 
+### [v1.4.0] - 2025-07-17
+
+#### Changed
+
+- Bagian "Panitia Pelaksana" dirombak sepenuhnya dari tata letak grid statis menjadi sistem filter interaktif berbasis tombol, meningkatkan pengalaman pengguna secara signifikan.
+- Grup "Penanggung Jawab & Pembina" dipisah menjadi dua kategori filter yang berbeda ("Penanggung Jawab" dan "Pembina") untuk kejelasan struktur.
+- Daftar nama panitia diganti dengan grid kartu individu yang modern dan minimalis, menampilkan foto avatar, nama, dan jabatan masing-masing anggota.
+- Grid kartu panitia dibuat agar selalu berada di tengah (rata tengah), memastikan tampilan yang seimbang dan rapi secara visual.
+
 ### [v1.3.0] - 2025-07-15
 
 #### Changed

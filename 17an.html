@@ -205,10 +205,10 @@
           panitia. Kenali mereka yang berada di balik layar kesuksesan acara
           kita.
         </p>
-        <div
-          id="committee-container"
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        ></div>
+        <div id="committee-filters" class="flex flex-wrap justify-center gap-2 mb-8">
+        </div>
+        <div id="committee-members-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-8 justify-center">
+        </div>
       </section>
 
       <section id="partisipasi" class="bg-white rounded-lg shadow-lg p-8">
@@ -374,70 +374,61 @@
               "Badminton (berpasangan)",
             ],
           },
-          committee: [
-            {
-              role: "Penanggung Jawab & Pembina",
-              members: [
-                "Bpk. Suparwi (Ketua RT. 006)",
-                "Bpk. Daru Teguh Prasetyo",
-                "Bpk. Purnomo Kahar",
-                "Bpk. Dwi Hartanto",
-                "Bpk. Choeri",
-                "Bpk. Tri Total",
-                "Bpk. Anjas Novita",
-              ],
-            },
-            {
-              role: "Panitia Inti",
-              members: [
-                "Ketua: Aldi Maulana Iqbal",
-                "Wakil Ketua: Yudi Wildan Bayuaji",
-                "Sekretaris: Nesya Zahra Mevia",
-                "Wakil Sekretaris: Candi Puspita Sari",
-                "Bendahara: Nida Rafifah",
-                "Wakil Bendahara: Melia Rafiani",
-              ],
-            },
-            {
-              role: "Sie. Acara",
-              members: [
-                "Koordinator: Bintang Mahesa I.P.",
-                "Wakil: Muhammad Rafka D.H.",
-                "Anggota: Rizky Revaldy, Aldina Agmay S., Aisyah Nathania H.",
-              ],
-            },
-            {
-              role: "Sie. Sarana & Perlengkapan",
-              members: [
-                "Koordinator: Ghiffari Diifarezta G.",
-                "Wakil: Eko Nanda Cahyono",
-                "Anggota: M. Shafwan Z., Rafiqi, Richardo Ramadhani P.",
-              ],
-            },
-            {
-              role: "Sie. Dokumentasi & Humas",
-              members: [
-                "Koordinator: Zefanya Chelsy N.",
-                "Anggota: Askanah Ufairah, Qatrunnada Z.A",
-              ],
-            },
-            {
-              role: "Sie. Konsumsi Kegiatan",
-              members: [
-                "Koordinator: Hasna Hanifah C.",
-                "Anggota: Edelisa Zahra A., Frozyn Attaya M.Y.P.",
-              ],
-            },
-            {
-              role: "Penanggung Jawab Perlombaan",
-              members: [
-                "Koordinator: Handaffa Rafi Pasya",
-                "Anak-Anak: Rezkiya Kiara R., Fellycia Stefandyano P., Annisah",
-                "Remaja: Raehan Putra S., Rabbiulawal Khrisna P., Marfin Rafa R.",
-                "Bapak/Ibu: Ghiffari Diifarezta G., Eko Nanda C., Ayu Nadya Ningsih, Candi Puspita Sari",
-              ],
-            },
-          ],
+          committee: {
+            "Penanggung Jawab": [
+                { name: "Bpk. Suparwi", role: "Ketua RT. 006", avatar: "suparwi.png" }
+            ],
+            "Pembina": [
+                { name: "Bpk. Daru Teguh Prasetyo", role: "Pembina", avatar: "daru.png" },
+                { name: "Bpk. Purnomo Kahar", role: "Pembina", avatar: "purnomo.png" },
+                { name: "Bpk. Dwi Hartanto", role: "Pembina", avatar: "dwi.png" },
+                { name: "Bpk. Choeri", role: "Pembina", avatar: "choeri.png" },
+                { name: "Bpk. Tri Total", role: "Pembina", avatar: "tri.png" },
+                { name: "Bpk. Anjas Novita", role: "Pembina", avatar: "anjas.png" },
+            ],
+            "Panitia Inti": [
+                { name: "Aldi Maulana Iqbal", role: "Ketua", avatar: "aldi.png" },
+                { name: "Yudi Wildan Bayuaji", role: "Wakil Ketua", avatar: "yudi.png" },
+                { name: "Nesya Zahra Mevia", role: "Sekretaris", avatar: "nesya.png" },
+                { name: "Candi Puspita Sari", role: "Wakil Sekretaris", avatar: "candi.png" },
+                { name: "Nida Rafifah", role: "Bendahara", avatar: "nida.png" },
+                { name: "Melia Rafiani", role: "Wakil Bendahara", avatar: "melia.png" },
+            ],
+            "Sie. Acara": [
+                { name: "Bintang Mahesa I.P.", role: "Koordinator", avatar: "bintang.png" },
+                { name: "Muhammad Rafka D.H.", role: "Wakil Koordinator", avatar: "rafka.png" },
+                { name: "Rizky Revaldy", role: "Anggota", avatar: "rizky.png" },
+                { name: "Aldina Agmay S.", role: "Anggota", avatar: "aldina.png" },
+                { name: "Aisyah Nathania H.", role: "Anggota", avatar: "aisyah.png" },
+            ],
+            "Sie. Sarana & Perlengkapan": [
+                { name: "Ghiffari Diifarezta G.", role: "Koordinator", avatar: "ghiffari.png" },
+                { name: "Eko Nanda Cahyono", role: "Wakil Koordinator", avatar: "eko.png" },
+                { name: "M. Shafwan Z.", role: "Anggota", avatar: "shafwan.png" },
+                { name: "Rafiqi", role: "Anggota", avatar: "rafiqi.png" },
+                { name: "Richardo Ramadhani P.", role: "Anggota", avatar: "richardo.png" },
+            ],
+            "Sie. Dokumentasi & Humas": [
+                { name: "Zefanya Chelsy N.", role: "Koordinator", avatar: "zefanya.png" },
+                { name: "Askanah Ufairah", role: "Anggota", avatar: "askanah.png" },
+                { name: "Qatrunnada Z.A", role: "Anggota", avatar: "qatrunnada.png" },
+            ],
+            "Sie. Konsumsi Kegiatan": [
+                { name: "Hasna Hanifah C.", role: "Koordinator", avatar: "hasna.png" },
+                { name: "Edelisa Zahra A.", role: "Anggota", avatar: "edelisa.png" },
+                { name: "Frozyn Attaya M.Y.P.", role: "Anggota", avatar: "frozyn.png" },
+            ],
+            "PJ Perlombaan": [
+                { name: "Handaffa Rafi Pasya", role: "Koordinator", avatar: "handaffa.png" },
+                { name: "Rezkiya Kiara R.", role: "PJ Anak-Anak", avatar: "rezkiya.png" },
+                { name: "Fellycia Stefandyano P.", role: "PJ Anak-Anak", avatar: "fellycia.png" },
+                { name: "Annisah", role: "PJ Anak-Anak", avatar: "annisah.png" },
+                { name: "Raehan Putra S.", role: "PJ Remaja", avatar: "raehan.png" },
+                { name: "Rabbiulawal Khrisna P.", role: "PJ Remaja", avatar: "rabbiulawal.png" },
+                { name: "Marfin Rafa R.", role: "PJ Remaja", avatar: "marfin.png" },
+                { name: "Ayu Nadya Ningsih", role: "PJ Bapak/Ibu", avatar: "ayu.png" },
+            ],
+          },
           budget: {
             total: 8500000,
             current: 0,
@@ -558,7 +549,7 @@
           filtersContainer.addEventListener("click", (e) => {
             if (e.target.classList.contains("filter-btn")) {
               document
-                .querySelectorAll(".filter-btn")
+                .querySelectorAll("#filters .filter-btn")
                 .forEach((btn) => btn.classList.remove("active-filter"));
               e.target.classList.add("active-filter");
               renderCompetitions(e.target.dataset.filter);
@@ -571,36 +562,50 @@
         }
 
         function setupCommittee() {
-          const container = document.getElementById("committee-container");
-          if (!container) return;
-          container.innerHTML = "";
+            const filtersContainer = document.getElementById("committee-filters");
+            const membersContainer = document.getElementById("committee-members-container");
+            if (!filtersContainer || !membersContainer) return;
 
-          data.committee.forEach((group) => {
-            let colSpanClass = "";
-            if (
-              group.role === "Penanggung Jawab & Pembina" ||
-              group.role === "Panitia Inti"
-            ) {
-              colSpanClass = "md:col-span-2 lg:col-span-3";
+            const groups = Object.keys(data.committee);
+
+            groups.forEach((group, index) => {
+                const button = document.createElement("button");
+                button.textContent = group;
+                button.className = `filter-btn px-4 py-2 rounded-full border border-gray-300 transition ${
+                index === 0 ? "active-filter" : ""
+                }`;
+                button.dataset.filter = group;
+                filtersContainer.appendChild(button);
+            });
+
+            function renderCommitteeMembers(group) {
+                membersContainer.innerHTML = "";
+                const membersToRender = data.committee[group];
+                if (!membersToRender) return;
+                
+                membersToRender.forEach(member => {
+                    const card = document.createElement('div');
+                    card.className = 'text-center';
+                    card.innerHTML = `
+                        <img src="assets/avatar/${member.avatar}" onerror="this.onerror=null;this.src='https://placehold.co/400x400/E2E8F0/4A5568?text=AVATAR'" class="w-24 h-24 rounded-full mx-auto border-4 border-white shadow-md object-cover">
+                        <h4 class="mt-2 font-semibold text-gray-800">${member.name}</h4>
+                        <p class="text-sm text-gray-500">${member.role}</p>
+                    `;
+                    membersContainer.appendChild(card);
+                });
             }
 
-            let membersHtml = group.members
-              .map(
-                (member) =>
-                  `<li class="text-gray-600">${member
-                    .replace(/:/g, ':<span class="font-semibold">')
-                    .replace(/$/g, "</span>")}</li>`
-              )
-              .join("");
+            filtersContainer.addEventListener("click", (e) => {
+                if (e.target.classList.contains("filter-btn")) {
+                    document.querySelectorAll("#committee-filters .filter-btn").forEach(btn => btn.classList.remove("active-filter"));
+                    e.target.classList.add("active-filter");
+                    renderCommitteeMembers(e.target.dataset.filter);
+                }
+            });
 
-            const groupHtml = `
-                        <div class="bg-white p-6 rounded-lg shadow ${colSpanClass}">
-                            <h4 class="font-bold text-xl mb-3 text-red-800">${group.role}</h4>
-                            <ul class="list-disc list-inside space-y-1">${membersHtml}</ul>
-                        </div>
-                    `;
-            container.innerHTML += groupHtml;
-          });
+            if (groups.length > 0) {
+                renderCommitteeMembers(groups[0]);
+            }
         }
 
         function setupBudgetChart() {
