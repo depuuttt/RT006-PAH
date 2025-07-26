@@ -4,6 +4,22 @@ Static Websites of RT.006 Pesona Anggrek Harapan
 
 ## Changelog
 
+### [v1.5.0] - 2025-07-26
+
+#### Added
+
+- **Halaman Turnamen MLBB:** Membuat halaman baru (`turnamen-mlbb.html`) yang didedikasikan untuk menampilkan detail pertandingan e-sports, dirancang agar konsisten dengan tema visual utama.
+
+#### Changed
+
+- **Refaktor Data Dinamis:** Merombak halaman turnamen MLBB secara signifikan dengan memindahkan semua data spesifik pertandingan (tim, skor, pemain, draft, dll.) ke dalam satu objek JavaScript. Hal ini memungkinkan pembuatan halaman untuk pertandingan lain dengan mudah hanya dengan mengubah data pada objek tersebut.
+- Peningkatan Detail Pemain: Menambahkan nama hero di bawah gambar *signature hero* pada bagian "Perbandingan Pemain" untuk memberikan informasi yang lebih jelas.
+- Interaktivitas Logo Tim: Menambahkan efek "glow" dan "pulse" yang modern saat kursor diarahkan ke logo tim, meningkatkan pengalaman visual.
+
+#### Fixed
+
+- **Responsivitas Gambar Hero:** Memastikan semua gambar hero (ban, pick, signature) secara otomatis menyesuaikan ukurannya di setiap bagian menggunakan `object-cover`, sehingga gambar dengan ukuran universal (240x240) dapat digunakan tanpa distorsi.
+
 ### [v1.4.0] - 2025-07-17
 
 #### Changed
