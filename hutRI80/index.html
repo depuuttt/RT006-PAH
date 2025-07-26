@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HUT RI ke-80 - RT 006 - Pesona Anggrek Harapan</title>
+    <link rel="shortcut icon" href="../assets/logo.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script
@@ -73,7 +74,7 @@
         class="container mx-auto px-6 py-2 flex justify-between items-center"
       >
         <a href="index.html">
-          <img src="assets/logo.png" alt="Logo RT 006" class="h-12" />
+          <img src="../assets/logo.png" alt="Logo RT 006" class="h-12" />
         </a>
         <div class="hidden md:flex space-x-8">
           <a href="#jadwal" class="text-gray-600 hover:text-red-700">Jadwal</a>
@@ -587,7 +588,7 @@
                     const card = document.createElement('div');
                     card.className = 'text-center';
                     card.innerHTML = `
-                        <img src="assets/avatar/${member.avatar}" onerror="this.onerror=null;this.src='https://placehold.co/400x400/E2E8F0/4A5568?text=AVATAR'" class="w-24 h-24 rounded-full mx-auto border-4 border-white shadow-md object-cover">
+                        <img src="../assets/avatar/${member.avatar}" onerror="this.onerror=null;this.src='https://placehold.co/400x400/E2E8F0/4A5568?text=AVATAR'" class="w-24 h-24 rounded-full mx-auto border-4 border-white shadow-md object-cover">
                         <h4 class="mt-2 font-semibold text-gray-800">${member.name}</h4>
                         <p class="text-sm text-gray-500">${member.role}</p>
                     `;
